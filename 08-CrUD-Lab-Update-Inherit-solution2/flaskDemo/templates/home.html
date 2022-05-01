@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+      
+	  {% for key, value in mydata.items() %}
+    	  <article class="media content-section">
+              <div class="media-body"> 
+                <div class="article-metadata">
+                  <a class="mr-2" href="#">{{ key }}</a> <br/>
+                </div class="article-metadata">
+                <div>
+                
+    	  {% for item in value %}
+                <small class="text-muted">{{item.PerformanceDate}} {{item.PerformanceTime}} : {{ item.RoleName }} </small> 
+                <div>
+               
+          {% endfor %}
+          </article>
+     {% endfor %}
+	
+{% endblock content %}

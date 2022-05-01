@@ -1,0 +1,81 @@
+{% extends "layoutAdmin.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+	{% if legend == "Modify Role"%}
+            <legend class="border-bottom mb-4">{{ form.roleID }}</legend>
+	{% else %}
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+	{% endif %}
+
+
+	{% if legend != "Modify Role"%}
+            <div class="form-group">
+                {{ form.roleID.label(class="form-control-label") }}
+                {% if form.roleID.errors %}
+                    {{ form.roleID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.roleID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.roleID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+	{% endif %}
+		
+		<div class="form-group">
+                {{ form.roleName.label(class="form-control-label") }}
+                {% if form.roleName.errors %}
+                    {{ form.roleName(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.roleName.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.roleName(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+		<div class="form-group">
+                {{ form.personID.label(class="form-control-label") }}
+                {% if form.personID.errors %}
+                    {{ form.personID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.personID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.personID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+		
+		<div class="form-group">
+                {{ form.performanceID.label(class="form-control-label") }}
+                {% if form.performanceID.errors %}
+                    {{ form.performanceID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.performanceID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.performanceID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>	
+            
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+</div>
+{% endblock content %}

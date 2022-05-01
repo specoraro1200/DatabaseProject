@@ -1,0 +1,30 @@
+{% extends "layoutAdmin.html" %}
+{% block content %}
+      
+	  {% for place, perflist in mydata.items() %}
+    	  <article class="media content-section">
+              <div class="media-body"> 
+                <div class="article-metadata">
+                  <h3>{{ place }}</h> <br/>
+                </div class="article-metadata">
+                
+                
+    	  {% for perf, roles in perflist.items() %}
+              <div>
+              <h4>{{ perf }}</h4> 
+              </div>
+              
+              {% for role in roles %}
+                  <div>
+            	  <a class="mr-2" href="{{ url_for('rolePage', id=role.PersonID, roleid = role.RoleID)}}">{{ role.RoleName }} : {{ role.FirstName }} {{ role.LastName }}</a> 
+            	  </div>
+
+            	  
+              {% endfor %}
+              <br/>
+          {% endfor %}
+          </article>
+     {% endfor %}
+	
+{% endblock content %}
+

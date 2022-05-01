@@ -1,0 +1,49 @@
+{% extends "layoutAdmin.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+	
+
+	{% for row in join %}
+	<h3>{{ row.Name }} {Lat: {{row.Latitude}}  Lng: {{row.Longitude}}}</h3> 
+            <div class="article-metadata">	</div>    
+	<h4>{{row.PerformanceDate}} {{row.PerformanceTime}}</h4>
+         <a class="mr-2" href="{{url_for('selected', id=row.PersonID)}}">{{ row.RoleName }} : {{row.FirstName}} {{row.LastName}}</a> <br/>
+	<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_worker', id=row.PersonID) }}">Update Role</a>
+	<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete Role</button> 
+	  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Role?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{url_for('delete_role', id=row.PersonID,roleid=row.RoleID)}}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	 {% endfor %}
+
+
+</div>
+{% endblock content %}
+
+
+
+
+<article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{id }}</a> <br/>
+              <small class="text-muted">{{ id }} {{id}}  {{ id }}</small>
+            </div>  
+
+              <small class="text-muted">{{ row.PersonID }} {{row }}  {{ row.PerformanceID }}</small>
