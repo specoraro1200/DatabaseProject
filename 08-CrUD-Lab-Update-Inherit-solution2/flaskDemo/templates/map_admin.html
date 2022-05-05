@@ -36,12 +36,14 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
               <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
- 		<a class="nav-item nav-link" href="{{ url_for('map_home') }}">Map</a>
+              <a class="nav-item nav-link" href="{{ url_for('map_home') }}">Map</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
-
+                <a class="nav-item nav-link" href="{{ url_for('new_worker') }}">New Worker</a>
+                <a class="nav-item nav-link" href="{{ url_for('new_role') }}">New Role</a>
+                <a class="nav-item nav-link" href="{{ url_for('lookup') }}">Employee Lookup</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
@@ -77,24 +79,19 @@ function addInfoBubble(map) {
   
   var mydata = {{ mydata|tojson|safe }};
   
-  for (const [loc, roles] of Object.entries(mydata)) {
+  for (const [loc, shows] of Object.entries(mydata)) {
   
     var tokens = loc.split(/(?={)/g);
     var loc_name = tokens[0];
     var loc_coord = JSON.parse(tokens[1]);
-    
+
     var mystr = '';
-    var len = 5
-    roles.forEach(function(d){
-      rolestr = '\n' + d.PerformanceDate + ' ' + d.PerformanceTime + ' : ' + d.RoleName + '\n';
-      mystr += rolestr 
-      if (rolestr.length > len) {
-      len = rolestr.length - 8;
-      };
-    });
+    for (var show in shows) {
+    mystr += '\n' + String(show);
+    }
+
+    var divider = '_'.repeat(20);
     
-    var divider = '_'.repeat(len);
-  
     addMarkerToGroup(group, {lat:loc_coord.lat, lng:loc_coord.lng},
       String(loc_name) + divider + mystr);
      
@@ -127,6 +124,5 @@ addInfoBubble(map);
 
 
 
-               
+
                 <a class="nav-item nav-link" href="{{ url_for('home') }}">List View</a>
-                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>

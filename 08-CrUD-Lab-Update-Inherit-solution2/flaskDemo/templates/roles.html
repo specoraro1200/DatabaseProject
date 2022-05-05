@@ -5,7 +5,7 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 	{% if legend == "Modify Role"%}
-            <legend class="border-bottom mb-4">{{ form.roleID }}</legend>
+            <legend class="border-bottom mb-4">Update Role</legend>
 	{% else %}
             <legend class="border-bottom mb-4">{{ legend }}</legend>
 	{% endif %}
@@ -28,6 +28,7 @@
 	{% endif %}
 		
 		<div class="form-group">
+
                 {{ form.roleName.label(class="form-control-label") }}
                 {% if form.roleName.errors %}
                     {{ form.roleName(class="form-control form-control-lg is-invalid") }}
@@ -55,7 +56,7 @@
                 {% endif %}
             </div>
 
-		
+		{% if legend != "Modify Role"%}
 		<div class="form-group">
                 {{ form.performanceID.label(class="form-control-label") }}
                 {% if form.performanceID.errors %}
@@ -68,7 +69,8 @@
                 {% else %}
                     {{ form.performanceID(class="form-control form-control-lg") }}
                 {% endif %}
-            </div>	
+            </div>
+		{% endif %}
             
             </div>
         </fieldset>

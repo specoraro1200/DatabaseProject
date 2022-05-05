@@ -1,11 +1,12 @@
 {% extends "layoutAdmin.html" %}
 {% block content %}
-      
+      	<h4>Number of Performances: {{count}}</h4>  
 	  {% for place, perflist in mydata.items() %}
+    	  {% set venue = place.split('{')[0] %}
     	  <article class="media content-section">
               <div class="media-body"> 
                 <div class="article-metadata">
-                  <h3>{{ place }}</h> <br/>
+                  <h3>{{ venue }}</h> <br/>
                 </div class="article-metadata">
                 
                 

@@ -14,11 +14,8 @@ class User(db.Model, UserMixin):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    #image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-   # posts = db.relationship('Post', backref='author', lazy=True)
-
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
@@ -27,8 +24,10 @@ class Person(db.Model):
     
 class Venue(db.Model):
     __table__ = db.Model.metadata.tables['venue']
+
 class Performance(db.Model):
     __table__ = db.Model.metadata.tables['performance']
+
 class Role(db.Model):
     __table__ = db.Model.metadata.tables['role']
 
